@@ -1,4 +1,4 @@
-# Custom Graph Traversal Simulator
+# Custom Graph/Tree Traversal Simulator
 
 # Description
 This is a dynamic graph traversal simulator built using SFML. It allows you to create graphs interactively and visualize DFS or BFS traversal dynamically.
