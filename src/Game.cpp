@@ -9,7 +9,7 @@ Game::Game()
       selectedNode(nullptr) 
  {
     window.setFramerateLimit(60);
-    if (!font.loadFromFile("D:/CustomTreeTraversal/Assets/TimesNewRoman.ttf")) {
+    if (!font.loadFromFile("Assets/TimesNewRoman.ttf")) {
         std::cout << "Font not loaded\n";
     }
     createButton(1300 - 150, 10, buttonDfs, textDfs, "DFS");
@@ -22,7 +22,7 @@ Game::Game()
 
 void Game::run() 
 {
-    icon.loadFromFile("D:/CustomTreeTraversal/Assets/icon.png"); 
+    icon.loadFromFile("Assets/icon.png"); 
     window.setIcon(32, 32, icon.getPixelsPtr()); 
 
     showIntroScreen();
@@ -512,12 +512,12 @@ void Game::displacePosition()
 }
 
 void Game::initsound() {
-    if (!nodeBuffer.loadFromFile("D:/CustomTreeTraversal/Audio/drop.wav")) {
+    if (!nodeBuffer.loadFromFile("Audio/drop.wav")) {
         std::cout << "Error loading hit sound " << "\n";
     }
     nodeSound.setBuffer(nodeBuffer);
 
-    if (!nodeBuffer.loadFromFile("D:/CustomTreeTraversal/Audio/drop.wav")) {
+    if (!nodeBuffer.loadFromFile("Audio/drop.wav")) {
         std::cout << "Error loading point sound " << "\n";
     }
     nodeSound.setBuffer(nodeBuffer);
