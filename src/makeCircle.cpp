@@ -26,12 +26,28 @@ makeCircle::makeCircle(float radius, int x, int y, sf::Font& font, int number)
 void makeCircle::update(sf::Vector2i& mousePos, bool mousePressed, int& selectedIndex, int currentIndex, bool isDragging) 
 {
     static bool locked = false;
-   
-    // Check if the mouse was initially pressed inside the circle to start dragging
-    if (mousePressed && !locked && circle.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
-        selectedIndex = currentIndex; // Lock onto this circle
-        locked = true;
-        isDragging = true;
+    static bool isFirstClickCaptured = false;
+    static sf::Vector2f firstMousePos; 
+    static sf::Vector2f lastPos;
+
+    // Only let node to get dragged when you go and press inside the node bounds
+
+    if (!isFirstClickCaptured && mousePressed) {
+        firstMousePos = sf::Vector2f(mousePos.x, mousePos.y);
+        isFirstClickCaptured = true;
+    }
+
+    if (isFirstClickCaptured && !mousePressed) {
+        lastPos = sf::Vector2f(mousePos.x, mousePos.y);
+        isFirstClickCaptured = false;
+    }
+
+     if (mousePressed && !locked && circle.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
+         if (mousePos.x == firstMousePos.x && mousePos.y == firstMousePos.y) {
+             selectedIndex = currentIndex; // Lock onto this circle
+             locked = true;
+             isDragging = true;
+         }
     }
     
         // Release the circle when the mouse button is released
@@ -41,6 +57,7 @@ void makeCircle::update(sf::Vector2i& mousePos, bool mousePressed, int& selected
             selectedIndex = -1;
             mousePressed = false; 
         }
+
 
         // Only move the circle if it’s the one currently selected
         if (selectedIndex == currentIndex && locked) { 
