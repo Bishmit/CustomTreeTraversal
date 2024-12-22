@@ -32,6 +32,7 @@ void Game::run()
         processEvents();
         update();
         render();
+
     }
 }
 
@@ -271,7 +272,6 @@ void Game::render()
     // logic to print the numbers associated with nodes
     if (circles.size() > lastSize) {
         lastSize = circles.size(); 
-        std::cout << lastSize << "\n"; 
     }
 
     window.setView(window.getDefaultView());
